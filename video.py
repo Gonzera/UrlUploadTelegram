@@ -2,7 +2,6 @@ import os
 import time
 import subprocess
 import requests
-import youtube_dl
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 from requests.exceptions import ConnectionError
@@ -20,16 +19,13 @@ def download(url, file_name):
 
     return rc
 
-    
 def gen_thumb(file_name):
-    thumb = 'thumbs/' + file_name +  '.jpeg'
-    args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-i', 'cache/' + file_name, '-ss', '00:00:59', '-frames:v', '1', thumb] #i know it looks weird
-    process = subprocess.Popen(args)
-    if os.path.exists(thumb):
+    thumb = file_name +  '.jpeg'
+    args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-i', 'cache/' + file_name, '-ss', '00:00:59', '-frames:v', '1','thumbs/' + thumb] #i know it looks weird
+    if os.path.isfile('thumbs/' + thumb):
         return thumb
     else:
         return 'null'
-
 
 def remove(file_name):
     """

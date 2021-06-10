@@ -20,7 +20,7 @@ class helpers:
 
     def get_duration(self, file_name):
         duration = 0
-        metadata = extractMetadata(createParser(file_name))
+        metadata = extractMetadata(createParser('cache/' + file_name))
         if metadata is not None:
             if metadata.has("duration"):
                 duration = metadata.get('duration').seconds
