@@ -91,7 +91,7 @@ def start_job(client, message):
     # for x in range(len(test)):
         # if test[x].isnumeric():
         #     message.forward( chat_id=-1001372231901, from_chat_id=message.chat.id, message_ids=message.message_id)
-    if not helper.b_whitelisted(chat_id):
+    if helper.b_whitelisted(chat_id):
         message.reply_text('Usuário não autorizado, contacte @anticongelante para se informar e obter acesso')
         return
     if not is_valid:
